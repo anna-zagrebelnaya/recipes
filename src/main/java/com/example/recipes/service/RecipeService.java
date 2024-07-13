@@ -38,6 +38,10 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
+    public void deleteRecipe(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
     public Map<Product, Integer> generateGroceryList(List<Long> recipeIds) {
         List<Recipe> recipes = recipeRepository.findAllById(recipeIds);
         return recipes.stream()

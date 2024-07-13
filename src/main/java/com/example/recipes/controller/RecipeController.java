@@ -37,6 +37,11 @@ public class RecipeController {
         return recipeService.saveRecipe(recipe);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteRecipe(@PathVariable Long id) {
+        recipeService.deleteRecipe(id);
+    }
+
     @PostMapping("/generate-grocery-list")
     public Map<Product, Integer> generateGroceryList(@RequestBody List<Long> recipeIds) {
         return recipeService.generateGroceryList(recipeIds);
