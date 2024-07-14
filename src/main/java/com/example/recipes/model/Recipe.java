@@ -13,7 +13,8 @@ public class Recipe {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ElementCollection
+    @CollectionTable(name = "recipe_ingredient", joinColumns = @JoinColumn(name = "recipe_id"))
     private List<Ingredient> ingredients;
 
     @Column(length = 5000)

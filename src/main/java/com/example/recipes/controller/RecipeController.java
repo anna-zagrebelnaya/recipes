@@ -29,7 +29,7 @@ public class RecipeController {
 
     @PostMapping
     public Recipe saveRecipe(@RequestPart("recipe") Recipe recipe,
-                             @RequestPart("image") MultipartFile image) throws IOException {
+                             @RequestPart(name="image", required = false) MultipartFile image) throws IOException {
         if (image != null && !image.isEmpty()) {
             String imageUrl = recipeService.saveImage(image);
             recipe.setImageUrl(imageUrl);
@@ -40,7 +40,7 @@ public class RecipeController {
     @PutMapping("/{id}")
     public Recipe updateRecipe(@PathVariable Long id,
                                @RequestPart("recipe") Recipe recipe,
-                               @RequestPart("image") MultipartFile image) throws IOException {
+                               @RequestPart(name="image", required = false) MultipartFile image) throws IOException {
         recipe.setId(id);
         if (image != null && !image.isEmpty()) {
             String imageUrl = recipeService.saveImage(image);

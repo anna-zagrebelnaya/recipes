@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Create the product table -->
+    <changeSet id="001-create-product-table" author="anna">
+        <createTable tableName="product">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Create the recipe table -->
+    <changeSet id="002-create-recipe-table" author="anna">
+        <createTable tableName="recipe">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(5000)"/>
+            <column name="image_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Create the recipe_ingredient table -->
+    <changeSet id="003-create-recipe-ingredient-table" author="yourname">
+        <createTable tableName="recipe_ingredient">
+            <column name="recipe_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="recipe_ingredient" baseColumnNames="recipe_id"
+                                 constraintName="fk_recipe_ingredient_recipe"
+                                 referencedTableName="recipe" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="recipe_ingredient" baseColumnNames="product_id"
+                                 constraintName="fk_recipe_ingredient_product"
+                                 referencedTableName="product" referencedColumnNames="id"/>
+    </changeSet>
+
+    <!-- Insert example data into the tables -->
+    <changeSet id="004-insert-example-data" author="anna">
+        <insert tableName="product">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Flour"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Sugar"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="3"/>
+            <column name="name" value="Eggs"/>
+            <column name="unit" value="U"/>
+        </insert>
+
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="Pancakes"/>
+            <column name="description" value="Delicious homemade pancakes."/>
+        </insert>
+        <insert tableName="recipe">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="Cake"/>
+            <column name="description" value="Simple and sweet cake."/>
+        </insert>
+
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="1"/>
+            <column name="quantity" valueNumeric="200"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="2"/>
+            <column name="quantity" valueNumeric="50"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="3"/>
+            <column name="quantity" valueNumeric="2"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="1"/>
+            <column name="quantity" valueNumeric="300"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="2"/>
+            <column name="quantity" valueNumeric="100"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="3"/>
+            <column name="quantity" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
