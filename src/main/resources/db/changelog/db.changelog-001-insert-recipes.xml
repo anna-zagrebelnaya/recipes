@@ -36,7 +36,7 @@
     </changeSet>
 
     <!-- Create the recipe_ingredient table -->
-    <changeSet id="003-create-recipe-ingredient-table" author="yourname">
+    <changeSet id="003-create-recipe-ingredient-table" author="anna">
         <createTable tableName="recipe_ingredient">
             <column name="recipe_id" type="BIGINT">
                 <constraints nullable="false"/>
@@ -59,56 +59,166 @@
     <!-- Insert example data into the tables -->
     <changeSet id="004-insert-example-data" author="anna">
         <insert tableName="product">
-            <column name="name" value="Flour"/>
-            <column name="unit" value="G"/>
+            <column name="name" value="Молоко 2.5%"/>
+            <column name="unit" value="ML"/>
         </insert>
         <insert tableName="product">
-            <column name="name" value="Sugar"/>
-            <column name="unit" value="G"/>
-        </insert>
-        <insert tableName="product">
-            <column name="name" value="Eggs"/>
+            <column name="name" value="Яйце"/>
             <column name="unit" value="U"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Борошно пшеничне"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Ягоди: вишня, малина, полуниця, лохина"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Вершкове масло 82%"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Підсолоджувач"/>
+            <column name="unit" value="G"/> <!--TODO-->
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Сир кисломолочний 5%"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Розпушувач"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Олія кокосова (можна замінити оливковою)"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Вівсяні пластівці (довгої варки)"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Йогурт без цукру 3%"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Мигдаль"/>
+            <column name="unit" value="G"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Цукрозамінник"/>
+            <column name="unit" value="G"/>
         </insert>
 
         <insert tableName="recipe">
-            <column name="name" value="Pancakes"/>
-            <column name="description" value="Delicious homemade pancakes."/>
+            <column name="name" value="Ягідний клафуті"/>
+            <column name="description">
+                <![CDATA[
+                    <ul>
+                        <li>Змішати яйця, підсолоджувач, молоко та розтоплене вершкове масло.</li>
+                        <li>Додати борошно і вимішати.</li>
+                        <li>Форму для запікання змастити маслом і викласти ягоди. Залити тістом.</li>
+                        <li>Випікати в розігрітій до 180°C духовці 40хв до готовності.</li>
+                        <li>Після приготування дати охолонути.</li>
+                    </ul>
+                ]]>
+            </column>
+            <column name="image_url" value="1721069855806_2024-07-15 20.57.11.jpg"/>
         </insert>
         <insert tableName="recipe">
-            <column name="name" value="Cake"/>
-            <column name="description" value="Simple and sweet cake."/>
+            <column name="name" value="Сирники"/>
+            <column name="description">
+                <![CDATA[
+                    <ul>
+                        <li>Змішати кисломолочний сир, яйце, підсолоджувач, борошно та розпушувачб ретельно перемішати. При бажанні суміш можна перебити в блендері.</li>
+                        <li>Сформувати сирники, обваляти у вівсяних пластівцях і обсмажити на пательні з розігрітою олією на середньому вогні по 5-6хв з кожної сторони.</li>
+                        <li>Подавати сирники з йогуртом, ягодами та подрібненими горіхами.</li>
+                    </ul>
+                ]]>
+            </column>
+            <column name="image_url" value="1721069865531_2024-07-15 20.57.20.jpg"/>
         </insert>
 
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="1"/>
             <column name="product_id" valueNumeric="1"/>
-            <column name="quantity" valueNumeric="200"/>
+            <column name="quantity" valueNumeric="250"/>
         </insert>
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="1"/>
             <column name="product_id" valueNumeric="2"/>
-            <column name="quantity" valueNumeric="50"/>
+            <column name="quantity" valueNumeric="2"/>
         </insert>
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="1"/>
             <column name="product_id" valueNumeric="3"/>
-            <column name="quantity" valueNumeric="2"/>
+            <column name="quantity" valueNumeric="80"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="4"/>
+            <column name="quantity" valueNumeric="150"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="5"/>
+            <column name="quantity" valueNumeric="20"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="1"/>
+            <column name="product_id" valueNumeric="6"/>
+            <column name="quantity" valueNumeric="0"/>
         </insert>
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="2"/>
-            <column name="product_id" valueNumeric="1"/>
-            <column name="quantity" valueNumeric="300"/>
+            <column name="product_id" valueNumeric="7"/>
+            <column name="quantity" valueNumeric="180"/>
         </insert>
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="2"/>
             <column name="product_id" valueNumeric="2"/>
+            <column name="quantity" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="3"/>
+            <column name="quantity" valueNumeric="50"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="8"/>
+            <column name="quantity" valueNumeric="1"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="9"/>
+            <column name="quantity" valueNumeric="10"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="10"/>
+            <column name="quantity" valueNumeric="15"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="11"/>
+            <column name="quantity" valueNumeric="80"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="4"/>
             <column name="quantity" valueNumeric="100"/>
         </insert>
         <insert tableName="recipe_ingredient">
             <column name="recipe_id" valueNumeric="2"/>
-            <column name="product_id" valueNumeric="3"/>
-            <column name="quantity" valueNumeric="3"/>
+            <column name="product_id" valueNumeric="12"/>
+            <column name="quantity" valueNumeric="25"/>
+        </insert>
+        <insert tableName="recipe_ingredient">
+            <column name="recipe_id" valueNumeric="2"/>
+            <column name="product_id" valueNumeric="13"/>
+            <column name="quantity" valueNumeric="0"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
