@@ -59,28 +59,23 @@
     <!-- Insert example data into the tables -->
     <changeSet id="004-insert-example-data" author="anna">
         <insert tableName="product">
-            <column name="id" valueNumeric="1"/>
             <column name="name" value="Flour"/>
             <column name="unit" value="G"/>
         </insert>
         <insert tableName="product">
-            <column name="id" valueNumeric="2"/>
             <column name="name" value="Sugar"/>
             <column name="unit" value="G"/>
         </insert>
         <insert tableName="product">
-            <column name="id" valueNumeric="3"/>
             <column name="name" value="Eggs"/>
             <column name="unit" value="U"/>
         </insert>
 
         <insert tableName="recipe">
-            <column name="id" valueNumeric="1"/>
             <column name="name" value="Pancakes"/>
             <column name="description" value="Delicious homemade pancakes."/>
         </insert>
         <insert tableName="recipe">
-            <column name="id" valueNumeric="2"/>
             <column name="name" value="Cake"/>
             <column name="description" value="Simple and sweet cake."/>
         </insert>
