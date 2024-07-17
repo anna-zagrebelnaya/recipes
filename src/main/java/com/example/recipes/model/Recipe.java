@@ -22,6 +22,10 @@ public class Recipe {
 
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Category category;
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -61,5 +65,17 @@ public class Recipe {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public enum Category {
+        BREAKFAST, LUNCH, SNACK, DINNER
     }
 }

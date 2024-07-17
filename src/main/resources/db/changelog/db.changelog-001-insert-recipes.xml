@@ -32,6 +32,9 @@
             </column>
             <column name="description" type="VARCHAR(5000)"/>
             <column name="image_url" type="VARCHAR(255)"/>
+            <column name="category" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -125,6 +128,7 @@
                 ]]>
             </column>
             <column name="image_url" value="1721069855806_2024-07-15 20.57.11.jpg"/>
+            <column name="category" value="BREAKFAST"/>
         </insert>
         <insert tableName="recipe">
             <column name="name" value="Сирники"/>
@@ -138,6 +142,7 @@
                 ]]>
             </column>
             <column name="image_url" value="1721069865531_2024-07-15 20.57.20.jpg"/>
+            <column name="category" value="BREAKFAST"/>
         </insert>
 
         <insert tableName="recipe_ingredient">
