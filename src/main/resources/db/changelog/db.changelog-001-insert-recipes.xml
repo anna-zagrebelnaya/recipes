@@ -18,6 +18,9 @@
             <column name="unit" type="VARCHAR(10)">
                 <constraints nullable="false"/>
             </column>
+            <column name="category" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -67,54 +70,67 @@
         <insert tableName="product">
             <column name="name" value="Молоко 2.5%"/>
             <column name="unit" value="ML"/>
+            <column name="category" value="DAIRY"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Яйце"/>
             <column name="unit" value="U"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Борошно пшеничне"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Ягоди: вишня, малина, полуниця, лохина"/>
             <column name="unit" value="G"/>
+            <column name="category" value="FRUIT"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Вершкове масло 82%"/>
             <column name="unit" value="G"/>
+            <column name="category" value="DAIRY"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Підсолоджувач"/>
             <column name="unit" value="G"/> <!--TODO-->
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Сир кисломолочний 5%"/>
             <column name="unit" value="G"/>
+            <column name="category" value="DAIRY"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Розпушувач"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Олія кокосова (можна замінити оливковою)"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Вівсяні пластівці (довгої варки)"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Йогурт без цукру 3%"/>
             <column name="unit" value="G"/>
+            <column name="category" value="DAIRY"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Мигдаль"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
         <insert tableName="product">
             <column name="name" value="Цукрозамінник"/>
             <column name="unit" value="G"/>
+            <column name="category" value="OTHER"/>
         </insert>
 
         <insert tableName="recipe">
@@ -139,7 +155,7 @@
             <column name="description">
                 <![CDATA[
                     <ul>
-                        <li>Змішати кисломолочний сир, яйце, підсолоджувач, борошно та розпушувачб ретельно перемішати. При бажанні суміш можна перебити в блендері.</li>
+                        <li>Змішати кисломолочний сир, яйце, підсолоджувач, борошно та розпушувач, ретельно перемішати. При бажанні суміш можна перебити в блендері.</li>
                         <li>Сформувати сирники, обваляти у вівсяних пластівцях і обсмажити на пательні з розігрітою олією на середньому вогні по 5-6хв з кожної сторони.</li>
                         <li>Подавати сирники з йогуртом, ягодами та подрібненими горіхами.</li>
                     </ul>

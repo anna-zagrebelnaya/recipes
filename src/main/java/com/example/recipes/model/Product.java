@@ -9,8 +9,13 @@ public class Product {
     private Long id;
 
     private String name;
+
     @Enumerated(EnumType.STRING)
     private MeasuringUnit unit;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Recipe.Category category;
 
     public Long getId() {
         return id;
@@ -36,11 +41,23 @@ public class Product {
         this.unit = unit;
     }
 
+    public Recipe.Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Recipe.Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
                 ", unit=" + unit +
                 '}';
+    }
+
+    public enum Category {
+        VEGETABLE, FRUIT, MEAT, DAIRY, FISH, OTHER;
     }
 }
