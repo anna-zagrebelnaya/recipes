@@ -15,7 +15,7 @@ public class Product {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Recipe.Category category;
+    private Product.Category category;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class Product {
         this.unit = unit;
     }
 
-    public Recipe.Category getCategory() {
+    public Product.Category getCategory() {
         return category;
     }
 
-    public void setCategory(Recipe.Category category) {
+    public void setCategory(Product.Category category) {
         this.category = category;
     }
 
