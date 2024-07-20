@@ -1,5 +1,6 @@
 package com.example.recipes.controller;
 
+import com.example.recipes.controller.dto.MenuUpdate;
 import com.example.recipes.model.Menu;
 import com.example.recipes.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,13 @@ public class MenuController {
     }
 
     @PostMapping
-    public ResponseEntity<Menu> saveMenu(@RequestBody Menu menu) {
-        Menu savedMenu = menuService.saveMenu(menu);
+    public ResponseEntity<Menu> saveMenu(@RequestBody MenuUpdate menuUpdate) {
+        Menu savedMenu = menuService.saveMenu(menuUpdate);
         return ResponseEntity.ok(savedMenu);
+    }
+
+    @PutMapping("/{id}")
+    public Menu updateMenu(@PathVariable Long id, @RequestBody MenuUpdate menuUpdate) {
+        return menuService.update(id, menuUpdate);
     }
 }
