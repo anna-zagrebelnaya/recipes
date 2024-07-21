@@ -8,6 +8,8 @@ public class Ingredient {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     private int quantity;
+    @Enumerated(EnumType.STRING)
+    private MeasuringUnit unit;
 
     public Product getProduct() {
         return product;
@@ -23,5 +25,13 @@ public class Ingredient {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public MeasuringUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(MeasuringUnit unit) {
+        this.unit = unit;
     }
 }
