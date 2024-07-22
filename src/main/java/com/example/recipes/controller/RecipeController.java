@@ -1,5 +1,6 @@
 package com.example.recipes.controller;
 
+import com.example.recipes.controller.dto.FilterByCalories;
 import com.example.recipes.controller.dto.GroceryItem;
 import com.example.recipes.controller.dto.GroceryList;
 import com.example.recipes.model.Recipe;
@@ -22,11 +23,16 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping
-    public List<Recipe> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories) {
-        if (categories == null || categories.isEmpty()) {
+    public List<Recipe> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories,
+                                      @RequestParam(required = false) FilterByCalories calories) {
+        if ((categories == null || categories.isEmpty()) && (calories == null || calories.equals(FilterByCalories.ALL))) {
             return recipeService.getAllRecipes();
-        } else {
+        } else if (calories == null || calories.equals(FilterByCalories.ALL)) {
             return recipeService.getRecipesByCategories(categories);
+        } else if (categories == null || categories.isEmpty()) {
+            return recipeService.getRecipesByCalories(calories.getLowerBound(), calories.getUpperBound());
+        } else {
+            return recipeService.getRecipesByCategoriesAndCalories(categories, calories.getLowerBound(), calories.getUpperBound());
         }
     }
 

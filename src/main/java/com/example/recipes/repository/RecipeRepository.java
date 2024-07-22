@@ -8,4 +8,8 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findByCategoryIn(List<Recipe.Category> categories);
+
+    List<Recipe> findByCaloriesBetween(Integer lower, Integer upper);
+
+    List<Recipe> findByCategoryInAndCaloriesBetween(List<Recipe.Category> categories, Integer lower, Integer upper);
 }

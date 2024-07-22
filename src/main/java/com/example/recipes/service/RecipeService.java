@@ -34,6 +34,15 @@ public class RecipeService {
         return recipeRepository.findByCategoryIn(categories);
     }
 
+    public List<Recipe> getRecipesByCalories(Integer lowerBoundCalories, Integer upperBoundCalories) {
+        return recipeRepository.findByCaloriesBetween(lowerBoundCalories, upperBoundCalories);
+    }
+
+    public List<Recipe> getRecipesByCategoriesAndCalories(List<Recipe.Category> categories, Integer lowerBoundCalories,
+                                                          Integer upperBoundCalories) {
+        return recipeRepository.findByCategoryInAndCaloriesBetween(categories, lowerBoundCalories, upperBoundCalories);
+    }
+
     public Recipe getRecipeById(Long id) {
         return recipeRepository.findById(id).orElse(null);
     }
