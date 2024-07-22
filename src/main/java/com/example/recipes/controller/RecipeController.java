@@ -25,15 +25,7 @@ public class RecipeController {
     @GetMapping
     public List<Recipe> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories,
                                       @RequestParam(required = false) FilterByCalories calories) {
-        if ((categories == null || categories.isEmpty()) && (calories == null || calories.equals(FilterByCalories.ALL))) {
-            return recipeService.getAllRecipes();
-        } else if (calories == null || calories.equals(FilterByCalories.ALL)) {
-            return recipeService.getRecipesByCategories(categories);
-        } else if (categories == null || categories.isEmpty()) {
-            return recipeService.getRecipesByCalories(calories.getLowerBound(), calories.getUpperBound());
-        } else {
-            return recipeService.getRecipesByCategoriesAndCalories(categories, calories.getLowerBound(), calories.getUpperBound());
-        }
+        return recipeService.getRecipes(categories, calories);
     }
 
     @GetMapping("/{id}")

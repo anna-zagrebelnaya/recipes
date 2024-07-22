@@ -1,10 +1,12 @@
 package com.example.recipes.service;
 
+import com.example.recipes.controller.dto.FilterByCalories;
 import com.example.recipes.model.Recipe;
 import com.example.recipes.model.Ingredient;
 import com.example.recipes.model.Product;
 import com.example.recipes.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,21 +28,18 @@ public class RecipeService {
     @Autowired
     private ProductService productService;
 
-    public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
-    }
+    public List<Recipe> getRecipes(List<Recipe.Category> categories, FilterByCalories calories) {
+        Specification<Recipe> spec = Specification.where(null);
 
-    public List<Recipe> getRecipesByCategories(List<Recipe.Category> categories) {
-        return recipeRepository.findByCategoryIn(categories);
-    }
+        if (categories != null && !categories.isEmpty()) {
+            spec = spec.and(RecipeSpecifications.hasCategories(categories));
+        }
 
-    public List<Recipe> getRecipesByCalories(Integer lowerBoundCalories, Integer upperBoundCalories) {
-        return recipeRepository.findByCaloriesBetween(lowerBoundCalories, upperBoundCalories);
-    }
+        if (calories != null && !calories.equals(FilterByCalories.ALL)) {
+            spec = spec.and(RecipeSpecifications.hasCaloriesBetween(calories.getLowerBound(), calories.getUpperBound()));
+        }
 
-    public List<Recipe> getRecipesByCategoriesAndCalories(List<Recipe.Category> categories, Integer lowerBoundCalories,
-                                                          Integer upperBoundCalories) {
-        return recipeRepository.findByCategoryInAndCaloriesBetween(categories, lowerBoundCalories, upperBoundCalories);
+        return recipeRepository.findAll(spec);
     }
 
     public Recipe getRecipeById(Long id) {
