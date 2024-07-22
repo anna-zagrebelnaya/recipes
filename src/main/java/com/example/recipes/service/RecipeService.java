@@ -30,6 +30,10 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
+    public List<Recipe> getRecipesByCategories(List<Recipe.Category> categories) {
+        return recipeRepository.findByCategoryIn(categories);
+    }
+
     public Recipe getRecipeById(Long id) {
         return recipeRepository.findById(id).orElse(null);
     }

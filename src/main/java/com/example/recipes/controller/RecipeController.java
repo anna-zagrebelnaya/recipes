@@ -22,8 +22,12 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
+    public List<Recipe> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories) {
+        if (categories == null || categories.isEmpty()) {
+            return recipeService.getAllRecipes();
+        } else {
+            return recipeService.getRecipesByCategories(categories);
+        }
     }
 
     @GetMapping("/{id}")
