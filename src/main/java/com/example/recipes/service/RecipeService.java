@@ -6,6 +6,8 @@ import com.example.recipes.model.Ingredient;
 import com.example.recipes.model.Product;
 import com.example.recipes.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +30,7 @@ public class RecipeService {
     @Autowired
     private ProductService productService;
 
-    public List<Recipe> getRecipes(List<Recipe.Category> categories, FilterByCalories calories) {
+    public Page<Recipe> getRecipes(List<Recipe.Category> categories, FilterByCalories calories, Pageable pageable) {
         Specification<Recipe> spec = Specification.where(null);
 
         if (categories != null && !categories.isEmpty()) {
@@ -39,7 +41,7 @@ public class RecipeService {
             spec = spec.and(RecipeSpecifications.hasCaloriesBetween(calories.getLowerBound(), calories.getUpperBound()));
         }
 
-        return recipeRepository.findAll(spec);
+        return recipeRepository.findAll(spec, pageable);
     }
 
     public Recipe getRecipeById(Long id) {

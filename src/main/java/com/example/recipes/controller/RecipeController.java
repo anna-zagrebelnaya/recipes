@@ -8,6 +8,8 @@ import com.example.recipes.model.Recipe;
 import com.example.recipes.service.RecipeService;
 import com.example.recipes.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,17 +28,12 @@ public class RecipeController {
 
     @GetMapping
     public List<RecipeCard> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories,
-                                          @RequestParam(required = false) FilterByCalories calories) {
-        return recipeService.getRecipes(categories, calories).stream()
-                .map(recipe -> {
-                    RecipeCard recipeCard = new RecipeCard();
-                    recipeCard.setId(recipe.getId());
-                    recipeCard.setName(recipe.getName());
-                    recipeCard.setImageUrl(recipe.getImageUrl());
-                    recipeCard.setCategory(recipe.getCategory());
-                    recipeCard.setCalories(recipe.getCalories());
-                    return recipeCard;
-                })
+                                          @RequestParam(required = false) FilterByCalories calories,
+                                          @RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return recipeService.getRecipes(categories, calories, pageable).stream()
+                .map(this::convertToCard)
                 .collect(Collectors.toList());
     }
 
@@ -81,5 +78,15 @@ public class RecipeController {
             groceryItems.add(new GroceryItem(product.getName(), entry.getValue(), product.getUnit().toString()));
         }
         return new GroceryList(groceryItems);
+    }
+
+    private RecipeCard convertToCard(Recipe recipe) {
+        RecipeCard recipeCard = new RecipeCard();
+        recipeCard.setId(recipe.getId());
+        recipeCard.setName(recipe.getName());
+        recipeCard.setImageUrl(recipe.getImageUrl());
+        recipeCard.setCategory(recipe.getCategory());
+        recipeCard.setCalories(recipe.getCalories());
+        return recipeCard;
     }
 }
