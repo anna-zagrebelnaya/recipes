@@ -3,6 +3,7 @@ package com.example.recipes.controller;
 import com.example.recipes.controller.dto.FilterByCalories;
 import com.example.recipes.controller.dto.GroceryItem;
 import com.example.recipes.controller.dto.GroceryList;
+import com.example.recipes.controller.dto.RecipeCard;
 import com.example.recipes.model.Recipe;
 import com.example.recipes.service.RecipeService;
 import com.example.recipes.model.Product;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -23,9 +25,19 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @GetMapping
-    public List<Recipe> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories,
-                                      @RequestParam(required = false) FilterByCalories calories) {
-        return recipeService.getRecipes(categories, calories);
+    public List<RecipeCard> getAllRecipes(@RequestParam(required = false) List<Recipe.Category> categories,
+                                          @RequestParam(required = false) FilterByCalories calories) {
+        return recipeService.getRecipes(categories, calories).stream()
+                .map(recipe -> {
+                    RecipeCard recipeCard = new RecipeCard();
+                    recipeCard.setId(recipe.getId());
+                    recipeCard.setName(recipe.getName());
+                    recipeCard.setImageUrl(recipe.getImageUrl());
+                    recipeCard.setCategory(recipe.getCategory());
+                    recipeCard.setCalories(recipe.getCalories());
+                    return recipeCard;
+                })
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
