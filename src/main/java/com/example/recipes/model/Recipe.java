@@ -26,7 +26,10 @@ public class Recipe {
     @Column(nullable = false)
     private Category category;
 
+    //per portion
     private Integer calories;
+
+    private Integer portions;
 
     // Getters and Setters
     public Long getId() {
@@ -83,6 +86,14 @@ public class Recipe {
 
     public void setCalories(Integer calories) {
         this.calories = calories;
+    }
+
+    public Integer getPortions() {
+        return portions;
+    }
+
+    public void setPortions(Integer portions) {
+        this.portions = portions;
     }
 
     public enum Category {

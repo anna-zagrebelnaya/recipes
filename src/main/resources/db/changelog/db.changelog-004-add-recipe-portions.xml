@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="001-add-unit-column-to-recipe-ingredient" author="anna">
+        <addColumn tableName="recipe">
+            <column name="portions" type="INTEGER"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="002-populate-portions-column" author="anna">
+        <update tableName="recipe">
+            <column name="portions" valueNumeric="1"/>
+        </update>
+    </changeSet>
+
+    <changeSet id="003-add-not-null-constraint-to-portions-column" author="anna">
+        <addNotNullConstraint columnName="portions" tableName="recipe" columnDataType="INTEGER"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -9,4 +9,5 @@
     <include file="db/changelog/db.changelog-001-insert-recipes.xml"/>
     <include file="db/changelog/db.changelog-002-insert-menus.xml"/>
     <include file="db/changelog/db.changelog-003-add-ingredient-unit.xml"/>
+    <include file="db/changelog/db.changelog-004-add-recipe-portions.xml"/>
 </databaseChangeLog>
